@@ -1,9 +1,6 @@
 # Disclamer
 JOAL is not designed to help or encourage you downloading illegal materials ! You must respect the law applicable in your country. I couldn't be held responsible for illegal activities performed by your usage of JOAL.
 
-## Official Docker Hub page:
-https://hub.docker.com/r/anthonyraymond/joal
-
 # JOAL
 This is the server application (with an **optional** webui), if you are interested in the desktop app look at [here](https://github.com/anthonyraymond/joal-desktop).
 
@@ -60,7 +57,7 @@ docker run -d \
     -p PORT:PORT \
     -v PATH_TO_CONF:/data \
     --name="joal" \
-    anthonyraymond/joal:X.X.X \
+    ghcr.io/chrisdma/joal:master \
     --joal-conf="/data" \
     --spring.main.web-environment=true \
     --server.port="PORT" \
@@ -72,7 +69,7 @@ Or the equivalent docker-compose service.
 version: "2"
 services:
   joal:
-    image: anthonyraymond/joal:X.X.X
+    image: ghcr.io/chrisdma/joal:master
     container_name: joal
     restart: unless-stopped
     volumes:
@@ -81,9 +78,6 @@ services:
       - PORT:PORT
     command: ["--joal-conf=/data", "--spring.main.web-environment=true", "--server.port=PORT", "--joal.ui.path.prefix=SECRET_OBFUSCATION_PATH", "--joal.ui.secret-token=SECRET_TOKEN"]
 ```
-
-Replace the `X.X.X` in `anthonyraymond/joal:X.X.X` with the desired version of joal (all versions are available [here](https://hub.docker.com/r/anthonyraymond/joal/tags)).
-
 
 ## 3. Start seeding
 Just add some `.torrent` files to the `joal-conf/torrents` folder. There is no need to restart JOAL to add more torrents, add it to the folder and JOAL will be aware of after few seconds.
