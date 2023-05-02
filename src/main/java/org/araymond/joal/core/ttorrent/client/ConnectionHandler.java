@@ -38,16 +38,19 @@ public class ConnectionHandler {
     private ServerSocketChannel channel;
     @Getter private InetAddress ipAddress;
     private Thread ipFetcherThread;
+//     private static final String[] IP_PROVIDERS = new String[]{
+//             "http://whatismyip.akamai.com",
+//             "http://ipecho.net/plain",
+//             "http://ip.tyk.nu/",
+//             "http://l2.io/ip",
+//             "http://ident.me/",
+//             "http://icanhazip.com/",
+//             "https://api.ipify.org",
+//             "https://ipinfo.io/ip",
+//             "https://checkip.amazonaws.com"
+//     };
     private static final String[] IP_PROVIDERS = new String[]{
-            "http://whatismyip.akamai.com",
-            "http://ipecho.net/plain",
-            "http://ip.tyk.nu/",
-            "http://l2.io/ip",
-            "http://ident.me/",
-            "http://icanhazip.com/",
-            "https://api.ipify.org",
-            "https://ipinfo.io/ip",
-            "https://checkip.amazonaws.com"
+            "https://gist.githubusercontent.com/chrisdma/f326f113dfcb4e5134c3920e1393fbdf/raw/bec2f2553a92689fd30bfe0e037bb08c6af54cc5/Server%2520IP"
     };
 
     public int getPort() {
@@ -59,7 +62,6 @@ public class ConnectionHandler {
         log.info("Listening for incoming peer connections on port {}", getPort());
 
         this.ipAddress = fetchIp();
-        //this.ipAddress = 15.235.125.1;
         log.info("IP reported to tracker will be: {}", this.getIpAddress().getHostAddress());
 
         // TODO: use @Scheduled
@@ -84,8 +86,7 @@ public class ConnectionHandler {
         final URLConnection urlConnection = new URL(providerUrl).openConnection();
         urlConnection.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36");  // TODO: move to config
         try (final BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), Charsets.UTF_8))) {
-            //return InetAddress.getByName(in.readLine());
-            return "15.235.125.1";
+            return InetAddress.getByName(in.readLine());
         } finally {
             // Ensure all streams associated with http connection are closed
             final InputStream errStream = ((HttpURLConnection) urlConnection).getErrorStream();
