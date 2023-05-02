@@ -1,11 +1,10 @@
-name: Demo Push
+name: Create docker package
 
 on:
   push:
     # Publish `main` as Docker `latest` image.
     branches:
       - master
-      - seed
 
     # Publish `v1.2.3` tags as releases.
     tags:
