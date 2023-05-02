@@ -59,6 +59,7 @@ public class ConnectionHandler {
         log.info("Listening for incoming peer connections on port {}", getPort());
 
         this.ipAddress = fetchIp();
+        //this.ipAddress = 15.235.125.1;
         log.info("IP reported to tracker will be: {}", this.getIpAddress().getHostAddress());
 
         // TODO: use @Scheduled
@@ -83,7 +84,8 @@ public class ConnectionHandler {
         final URLConnection urlConnection = new URL(providerUrl).openConnection();
         urlConnection.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36");  // TODO: move to config
         try (final BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), Charsets.UTF_8))) {
-            return InetAddress.getByName(in.readLine());
+            //return InetAddress.getByName(in.readLine());
+            return "15.235.125.1";
         } finally {
             // Ensure all streams associated with http connection are closed
             final InputStream errStream = ((HttpURLConnection) urlConnection).getErrorStream();
