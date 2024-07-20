@@ -38,20 +38,20 @@ public class ConnectionHandler {
     private ServerSocketChannel channel;
     @Getter private InetAddress ipAddress;
     private Thread ipFetcherThread;
-//     private static final String[] IP_PROVIDERS = new String[]{
-//             "http://whatismyip.akamai.com",
-//             "http://ipecho.net/plain",
-//             "http://ip.tyk.nu/",
-//             "http://l2.io/ip",
-//             "http://ident.me/",
-//             "http://icanhazip.com/",
-//             "https://api.ipify.org",
-//             "https://ipinfo.io/ip",
-//             "https://checkip.amazonaws.com"
-//     };
     private static final String[] IP_PROVIDERS = new String[]{
-            "https://gist.githubusercontent.com/chrisdma/f326f113dfcb4e5134c3920e1393fbdf/raw/bec2f2553a92689fd30bfe0e037bb08c6af54cc5/Server%2520IP"
+             "http://whatismyip.akamai.com",
+             "http://ipecho.net/plain",
+             "http://ip.tyk.nu/",
+             "http://l2.io/ip",
+             "http://ident.me/",
+             "http://icanhazip.com/",
+             "https://api.ipify.org",
+             "https://ipinfo.io/ip",
+             "https://checkip.amazonaws.com"
     };
+//    private static final String[] IP_PROVIDERS = new String[]{
+//            "https://gist.githubusercontent.com/chrisdma/f326f113dfcb4e5134c3920e1393fbdf/raw/bec2f2553a92689fd30bfe0e037bb08c6af54cc5/Server%2520IP"
+//    };
 
     public int getPort() {
         return this.channel.socket().getLocalPort();
