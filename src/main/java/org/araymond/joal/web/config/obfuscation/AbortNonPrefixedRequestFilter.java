@@ -22,7 +22,7 @@ public class AbortNonPrefixedRequestFilter implements Filter {
     private final String pathPrefix;
 
     public AbortNonPrefixedRequestFilter(@Value("${joal.ui.path.prefix}") final String pathPrefix) {
-        this.pathPrefix = pathPrefix;
+        this.pathPrefix = pathPrefix.isEmpty() ? "" : pathPrefix;
     }
 
     @Override
